@@ -58,6 +58,10 @@ NS_ASSUME_NONNULL_BEGIN
  *选中空心
  */
 @property (nonatomic, assign) BOOL isActiveHollow;
+/**
+ 容器背景颜色
+ */
+@property (nonatomic, strong) UIColor *contentViewBGColor;
 
 
 /**

@@ -38,6 +38,7 @@ static  CGFloat  minItemSizeH  = 2;
  *选中的dot 的layer
  */
 @property (nonatomic, strong) CALayer *activeLayer;
+
 @end
 @implementation SXPageControlBaseView
 
@@ -61,10 +62,8 @@ static  CGFloat  minItemSizeH  = 2;
     self.inactiveSize     = CGSizeMake(10, 10);
     self.inactiveColor = [UIColor lightGrayColor];
     self.activeColor   = [UIColor whiteColor];
+    self.activeColor   = [UIColor clearColor];
 
-    
-    
-    
 }
 
 #pragma mark ---UI
@@ -78,52 +77,49 @@ static  CGFloat  minItemSizeH  = 2;
 - (UIView *)contentView{
     if (!_contentView) {
         _contentView = [[UIView alloc]init];
-        _contentView.backgroundColor = [UIColor redColor];
+
     }
     return _contentView;
 }
 #pragma mark ---setter
 - (void)setNumberOfpage:(NSInteger)numberOfpage{
     _numberOfpage = numberOfpage;
-    
 
-    
 }
 - (void)setCurrentPage:(NSInteger)currentPage{
     _currentPage = currentPage;
     [self updateCurrentPage:currentPage];
 }
-- (void)setHidesForSinglePage:(BOOL)hidesForSinglePage{
+- (void)setHidesForSinglePage:(BOOL)hidesForSinglePage {
 
 }
     
-- (void)setInactiveColor:(UIColor *)inactiveColor{
+- (void)setInactiveColor:(UIColor *)inactiveColor {
     _inactiveColor = inactiveColor;
     
 }
-- (void)setActiveColor:(UIColor *)activeColor{
+- (void)setActiveColor:(UIColor *)activeColor {
     _activeColor = activeColor;
     
 }
-- (void)setActiveSize:(CGSize)activeSize{
+- (void)setActiveSize:(CGSize)activeSize {
     _activeSize = activeSize;
-
-    
-    
+  
 }
-- (void)setInactiveSize:(CGSize)inactiveSize{
+- (void)setInactiveSize:(CGSize)inactiveSize {
     _inactiveSize = inactiveSize;
 
-    
-    
-    
 }
-- (void)setIndicatorSize:(CGSize)indicatorSize{
+- (void)setIndicatorSize:(CGSize)indicatorSize {
     _indicatorSize = indicatorSize;
 }
-- (void)setColumnSpacing:(CGFloat)columnSpacing{
+- (void)setColumnSpacing:(CGFloat)columnSpacing {
     _columnSpacing = columnSpacing;
     
+}
+- (void)setContentViewBGColor:(UIColor *)contentViewBGColor {
+    _contentViewBGColor = contentViewBGColor;
+    self.contentView.backgroundColor = contentViewBGColor;
 }
 #pragma mark ---计算当前的contentView
 /**
@@ -171,16 +167,22 @@ static  CGFloat  minItemSizeH  = 2;
         [tempL removeFromSuperlayer];
     }
     self.inactiveLayers = [NSMutableArray array];
-
-    self.activeLayer = [CALayer new];
-
+    
     for (int i = 0; i < self.numberOfpage ; i++) {
         CALayer *inactiveLayer = [CALayer new];
-        inactiveLayer.backgroundColor = [UIColor blueColor].CGColor;
+        inactiveLayer.backgroundColor = self.inactiveColor.CGColor;
         [self.contentView.layer addSublayer:inactiveLayer];
         [self.inactiveLayers addObject:inactiveLayer];
     }
 }
+
+- (CALayer *)activeLayer {
+    if (!_activeLayer) {
+        _activeLayer = [CALayer new];
+    }
+    return _activeLayer;
+}
+
 #pragma mark ---更新 index
 - (void)updateCurrentPage:(NSInteger)currentIndex{}
 #pragma mark ---布局inactiveLayer

@@ -23,8 +23,7 @@
     CGFloat firstLayerX = (self.maxIndicatorSize.width - self.activeSize.width)*0.5;
     CGFloat firstLayerY = (self.maxIndicatorSize.height - self.activeSize.height)*0.5;
 
-    [self.activeLayer removeFromSuperlayer];
-    self.activeLayer.backgroundColor = [UIColor yellowColor].CGColor;
+    self.activeLayer.backgroundColor = self.activeColor.CGColor;
     self.activeLayer.frame = CGRectMake(firstLayerX, firstLayerY, self.activeSize.width, self.activeSize.height);
     self.activeLayer.cornerRadius = self.activeLayer.frame.size.height*0.5;
     [self.contentView.layer addSublayer:self.activeLayer];
@@ -59,7 +58,6 @@
     CGFloat firstLayerX = (self.maxIndicatorSize.width - self.activeSize.width)*0.5;
     CGFloat firstLayerY = (self.maxIndicatorSize.height - self.activeSize.height)*0.5;
 
-    self.activeLayer.backgroundColor = [UIColor yellowColor].CGColor;
     if (currentIndex == 0) {
         self.activeLayer.frame = CGRectMake(firstLayerX + (self.maxIndicatorSize.width + self.columnSpacing)*currentIndex, firstLayerY, self.activeSize.width, self.activeSize.height);
         return;
@@ -76,7 +74,6 @@
     self.activeLayer.frame = CGRectMake(firstLayerX + (self.maxIndicatorSize.width + self.columnSpacing)*(currentIndex - 1), firstLayerY, animaW, self.activeSize.height);    [CATransaction commit];
     [CATransaction commit];
     [CATransaction commit];
-
 
     
 }
