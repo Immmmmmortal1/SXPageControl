@@ -9,6 +9,8 @@ pod 'SXPageControl'
 ```
 #import "SXPageControlBaseView.h"
 ```
+
+```
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
@@ -32,3 +34,4 @@ pod 'SXPageControl'
         pageC.currentPage = 0;
     }
 }
+```
